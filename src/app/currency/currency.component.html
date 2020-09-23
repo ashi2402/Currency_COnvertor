@@ -1,0 +1,218 @@
+<div class="container-fluid">
+  <div class="myNavbar">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand logo" href="/currency">
+        <img
+          class=".img-responsive responsive"
+          src="../../assets/images/logo.png"
+          class="img-rounded"
+          alt="Currency"
+      /></a>
+      <form class="form-inline">
+        <p>Currency:</p>
+        <p-dropdown
+          [options]="countries"
+          [(ngModel)]="selectedCity"
+          name="something"
+          (onChange)="changeCurrency($event)"
+          placeholder="Select a Currency"
+          optionLabel="currency_code"
+          [showClear]="true"
+        ></p-dropdown>
+      </form>
+    </nav>
+  </div>
+  <div class="defaultCurrency">
+    <p
+      class="defaultVal"
+      *ngIf="selectedCurrency == '' || selectedCity == null"
+    >
+      USD is default currency
+    </p>
+    <p class="selectedVal" *ngIf="selectedCurrency">
+      {{ selectedCurrency }} is selected currency
+    </p>
+  </div>
+  <div class="mainContent"></div>
+  <div class="row">
+    <div class="col">
+      <p-card
+        [style]="{
+          height: '100%',
+          'margin-top': '15px',
+          'background-color': 'rgb(61 137 154)'
+        }"
+      >
+        <p-header>
+          <p class="cardHeader">Currency List</p>
+        </p-header>
+        <div>
+          <p-table [columns]="cols" [value]="currency" [autoLayout]="true">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th
+                  *ngFor="let col of columns"
+                  style="background-color: rgb(49 119 224 / 51%)"
+                >
+                  {{ col.header }}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr style="background-color: rgb(253 253 253 / 51%)">
+                <td *ngFor="let col of columns">
+                  {{ rowData[col.field] }}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <p-footer>
+          <p class="currencyFooter">
+            Above data for Date: {{ date }} with Base Currency: {{ cur }}
+          </p>
+        </p-footer>
+      </p-card>
+    </div>
+    <div class="col currency-convertor">
+      <p-card
+        header="Convert a Currency"
+        [style]="{
+          height: '100%',
+          'margin-top': '15px',
+          'background-color': 'rgb(143 219 236)'
+        }"
+      >
+        <div>
+          <form [formGroup]="compareForm" (ngSubmit)="onSubmit()">
+            <div class="ui-g ui-fluid">
+              <div class="ui-g-6">
+                <span class="formClass">From </span>
+                <p-dropdown
+                  [style]="{ 'background-color': 'red' }"
+                  [options]="countries"
+                  formControlName="currencyFrom"
+                  name="something"
+                  placeholder="Select a Currency"
+                  optionLabel="currency_code"
+                  [showClear]="true"
+                ></p-dropdown>
+              </div>
+              <div class="ui-g-6">
+                <span class="formClass">To </span>
+                <p-dropdown
+                  [options]="countries"
+                  formControlName="currencyTo"
+                  name="something"
+                  placeholder="Select a Currency"
+                  optionLabel="currency_code"
+                  [showClear]="true"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div>
+              <br />
+              <button
+                class="bt"
+                pButton
+                type="submit"
+                label="Check Value"
+              ></button>
+            </div>
+          </form>
+        </div>
+        <p-footer>
+          <p-card
+            [style]="{
+              'background-color': 'rgb(201 240 249)',
+              'border-radius': '10px',
+              height: '80px',
+              position: 'relative',
+              top: '60px'
+            }"
+          >
+            <div class="compareResponse" *ngIf="compareResponse">
+              <p class="compareSpan">
+                1 {{ currencyFromName }} = {{ currencyFrom }}
+                {{ currencyToName }}
+              </p>
+
+              <button class="button" type="button" (click)="resetVal($event)">
+                Reset
+              </button>
+            </div>
+          </p-card>
+        </p-footer>
+      </p-card>
+    </div>
+    <div class="col">
+      <p-card
+        header="Currency Comparison"
+        [style]="{
+          height: '100%',
+          'margin-top': '15px',
+          'background-color': 'rgb(61 137 154)'
+        }"
+      >
+        <div>
+          <form [formGroup]="currencyForm" (ngSubmit)="compareCurrency()">
+            <div class="ui-g ui-fluid">
+              <div class="ui-g-6">
+                <p-dropdown
+                  [options]="countries"
+                  formControlName="currencyFrom"
+                  name="something"
+                  placeholder="Select a Currency"
+                  optionLabel="currency_code"
+                  [showClear]="true"
+                ></p-dropdown>
+              </div>
+              <div class="ui-g-6">
+                <p-dropdown
+                  [options]="countries"
+                  formControlName="currencyTo"
+                  name="something"
+                  placeholder="Select a Currency"
+                  optionLabel="currency_code"
+                  [showClear]="true"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div>
+              <br />
+              <div class="ui-g ui-fluid">
+                <div class="ui-g-3">
+                  <p-calendar
+                    styleClass="only-icon"
+                    formControlName="period"
+                    name="something"
+                    [showIcon]="true"
+                    [maxDate]="maxDate"
+                  ></p-calendar>
+                </div>
+                <div class="ui-g-3"></div>
+                <div class="ui-g-3"></div>
+                <div class="ui-g-3">
+                  <button
+                    class="bt"
+                    pButton
+                    type="submit"
+                    label="Compare"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div
+          id="container"
+          style="width: 100%; height: 450px; display: block"
+        ></div>
+      </p-card>
+    </div>
+  </div>
+  <div class="footer">
+    <p>Copyright &copy;2020</p>
+  </div>
+</div>

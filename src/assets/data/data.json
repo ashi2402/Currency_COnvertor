@@ -1,0 +1,74 @@
+[
+    {
+    "country": "United Arab Emirates",
+    "currency_code": "AED"
+    },
+
+    {
+    "country": "Australia",
+    "currency_code": "AUD"
+    },
+    {
+    "country": "Brazil",
+    "currency_code": "BRL"
+    },
+    {
+    "country": "Canada",
+    "currency_code": "CAD"
+    },
+    {
+    "country": "Switzerland",
+    "currency_code": "CHF"
+    },
+    {
+    "country": "China",
+    "currency_code": "CNY"
+    },
+
+    {
+    "country": "Germany",
+    "currency_code": "EUR"
+    },
+    {
+    "country": "United Kingdom",
+    "currency_code": "GBP"
+    },
+    {
+    "country": "Hong Kong",
+    "currency_code": "HKD"
+    },
+    {
+    "country": "Bangladesh",
+    "currency_code": "BDT"
+    },
+    {
+    "country": "India",
+    "currency_code": "INR"
+    },
+    {
+    "country": "Japan",
+    "currency_code": "JPY"
+    },
+
+    {
+    "country": "New Zealand",
+    "currency_code": "NZD"
+    },
+    {
+    "country": "Russia",
+    "currency_code": "RUB"
+    },
+
+    {
+    "country": "Singapore",
+    "currency_code": "SGD"
+    },
+    {
+    "country": "United States",
+    "currency_code": "USD"
+    },
+    {
+    "country": "South Africa",
+    "currency_code": "ZAR"
+    }
+    ]
